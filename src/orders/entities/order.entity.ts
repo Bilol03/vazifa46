@@ -6,7 +6,7 @@ import {
   JoinTable,
   CreateDateColumn,
 } from 'typeorm';
-import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { ObjectType, Field, ID, Int, Float } from '@nestjs/graphql';
 import { User } from 'src/user/entities/auth.entity';
 import { Book } from 'src/books/entities/book.entity';
 
@@ -17,18 +17,18 @@ export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // Har bir order bitta userga tegishli
   @Field(() => User)
   @ManyToOne(() => User, (user) => user.orders, { eager: true })
   user: User;
 
-  // Har bir orderda bir nechta book bo‘lishi mumkin
   @Field(() => [Book])
   @ManyToMany(() => Book, (book) => book.orders, { eager: true })
   @JoinTable()
   books: Book[];
 
-  // Buyurtma yaratilgan vaqti
+  @Field(() => Number, ({description: 'Order total price'}))
+  total_price: number
+
   @Field()
   @CreateDateColumn()
   createdAt: Date;

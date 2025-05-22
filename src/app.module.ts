@@ -7,9 +7,9 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
 import { BooksModule } from './books/books.module';
 import { OrdersModule } from './orders/orders.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -35,6 +35,7 @@ import { OrdersModule } from './orders/orders.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
       playground: true,
+      context: ({ req }) => ({ req }),
     }),
     AuthModule,
     UserModule,
