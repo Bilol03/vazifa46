@@ -8,6 +8,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { BooksModule } from './books/books.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -36,6 +38,8 @@ import { UserModule } from './user/user.module';
     }),
     AuthModule,
     UserModule,
+    BooksModule,
+    OrdersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

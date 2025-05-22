@@ -6,9 +6,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Role } from '../../auth/dto/register_dto.input';
+import { Order } from 'src/orders/entities/order.entity';
 
 @ObjectType()
 @Entity()
@@ -46,6 +48,9 @@ export class User {
     name: 'created_at',
   })
   createdAt: Date;
+
+  @OneToMany(() => Order, (order) => order.user)
+  orders: Order[];
 
   @BeforeInsert()
   @BeforeUpdate()
